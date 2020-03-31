@@ -4,6 +4,8 @@ import {
   SET_DETAILS,
   GET_CHARACTERS,
   REMOVE_CHARACTER,
+  SET_SEARCH,
+  SET_TRASH,
   GET_BACK
 } from "./actions";
 
@@ -12,10 +14,11 @@ const initialState = {
   prevSection: "HOME",
   characters: [],
   detail: null,
-  isSearchResult: false,
   previousPage: null,
   nextPage: 2,
-  currentPage: 1
+  currentPage: 1,
+  isSearchResult: false,
+  trash: []
 };
 
 export const removeCharacter = (index, characters = []) => {
@@ -53,10 +56,21 @@ function reducer(state = initialState, action) {
         ...state,
         detail: action.payload
       };
+    case SET_SEARCH:
+      return {
+        ...state,
+        isSearchResult: action.payload
+      };
+    case SET_TRASH:
+      return {
+        ...state,
+        trash: action.payload
+      };
     case GET_BACK:
       return {
         ...state,
-        section: state.prevSection
+        section: state.prevSection,
+        isSearchResult: false
       };
     default:
       return state;

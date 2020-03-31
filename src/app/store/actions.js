@@ -6,5 +6,8 @@ export const GET_BACK = "GET_BACK";
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const SET_DETAILS = "SET_DETAILS";
 export const REMOVE_CHARACTER = "REMOVE_CHARACTER";
+//Search
+export const SET_SEARCH = "SET_SEARCH";
+export const SET_TRASH = "SET_TRASH";
 //Movies
 export const GET_MOVIES = "GET_MOVIES";

@@ -3,7 +3,11 @@ import store from "../../store/store";
 import { from, BehaviorSubject } from "rxjs";
 import { searchCharacters } from "../../services/getCharacters";
 import { useObservable } from "../../utils/handlers/userObservable";
-import { GET_CHARACTERS, SET_PAGINATION } from "../../store/actions";
+import {
+  GET_CHARACTERS,
+  SET_PAGINATION,
+  SET_SEARCH
+} from "../../store/actions";
 import {
   filter,
   mergeMap,
@@ -23,6 +27,7 @@ let searchResultObservable = searchSubject.pipe(
   mergeMap(val => {
     if (previousVal !== val) {
       previousVal = val;
+      store.dispatch({ type: GET_CHARACTERS, payload: [] });
       return from(searchCharacters(val));
     } else {
       return from([]);
@@ -35,6 +40,7 @@ function SearchBar() {
 
   const setResults = response => {
     store.dispatch({ type: GET_CHARACTERS, payload: response.results });
+    store.dispatch({ type: SET_SEARCH, payload: true });
     store.dispatch({
       type: SET_PAGINATION,
       payload: {
@@ -63,6 +69,7 @@ function SearchBar() {
         placeholder="Search character..."
         aria-label="Recipient's username"
         aria-describedby="button-addon2"
+        id="search"
       />
       <div className="input-group-append">
         <button

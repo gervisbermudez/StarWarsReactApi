@@ -50,7 +50,7 @@ function Detail(props) {
           <div className="row">
             <div className="col-md-12 align-self-center pt-4">
               <button onClick={back} className="btn btn-primary">
-                Back
+                Volver
               </button>
             </div>
           </div>
