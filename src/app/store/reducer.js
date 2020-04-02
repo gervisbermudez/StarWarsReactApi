@@ -6,7 +6,8 @@ import {
   REMOVE_CHARACTER,
   SET_SEARCH,
   SET_TRASH,
-  GET_BACK
+  GET_BACK,
+  SET_SHOWLOADING
 } from "./actions";
 
 const initialState = {
@@ -18,13 +19,21 @@ const initialState = {
   nextPage: 2,
   currentPage: 1,
   isSearchResult: false,
+  showLoading: true,
   trash: []
 };
 
 export const removeCharacter = (index, characters = []) => {
+  debugger;
   return characters.filter((value, i) => {
     return i !== index;
   });
+};
+
+export const addToTrash = (index, state) => {
+  debugger;
+  state.trash.push(state.characters[index].name);
+  return state.trash;
 };
 
 function reducer(state = initialState, action) {
@@ -42,7 +51,8 @@ function reducer(state = initialState, action) {
     case REMOVE_CHARACTER:
       return {
         ...state,
-        characters: removeCharacter(action.payload, state.characters)
+        character: removeCharacter(action.payload, state.characters),
+        trash: addToTrash(action.payload, state)
       };
     case SET_PAGINATION:
       return {
@@ -55,6 +65,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload
+      };
+    case SET_SHOWLOADING:
+      return {
+        ...state,
+        showLoading: action.payload
       };
     case SET_SEARCH:
       return {

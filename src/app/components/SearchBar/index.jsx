@@ -6,7 +6,8 @@ import { useObservable } from "../../utils/handlers/userObservable";
 import {
   GET_CHARACTERS,
   SET_PAGINATION,
-  SET_SEARCH
+  SET_SEARCH,
+  SET_SHOWLOADING
 } from "../../store/actions";
 import {
   filter,
@@ -49,11 +50,18 @@ function SearchBar() {
         previousPage: null
       }
     });
+    if (response.results.length === 0) {
+      store.dispatch({ type: SET_SHOWLOADING, payload: false });
+    }
   };
 
   useObservable(searchResultObservable, setResults);
 
   const handleSearchChange = e => {
+    store.dispatch({
+      type: SET_SHOWLOADING,
+      payload: true
+    });
     const newValue = e.target.value;
     setSearch(newValue);
     searchSubject.next(newValue);

@@ -9,5 +9,6 @@ export const REMOVE_CHARACTER = "REMOVE_CHARACTER";
 //Search
 export const SET_SEARCH = "SET_SEARCH";
 export const SET_TRASH = "SET_TRASH";
+export const SET_SHOWLOADING = "SET_SHOWLOADING";
 //Movies
 export const GET_MOVIES = "GET_MOVIES";

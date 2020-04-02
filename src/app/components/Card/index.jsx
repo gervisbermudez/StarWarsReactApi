@@ -9,7 +9,7 @@ import {
 } from "../../store/actions";
 
 function Card(props) {
-  const { movie, index } = props;
+  const { character, index } = props;
 
   const remove = index => {
     store.dispatch({ type: REMOVE_CHARACTER, payload: index });
@@ -17,18 +17,18 @@ function Card(props) {
 
   const toDetail = () => {
     store.dispatch({ type: CHANGE_SECTION, payload: "DETAIL" });
-    store.dispatch({ type: SET_DETAILS, payload: movie });
+    store.dispatch({ type: SET_DETAILS, payload: character });
   };
 
   return (
     <div className="card">
       <div className="card-body">
         <h5 className="card-title pointer" onClick={toDetail}>
-          {movie.name}
+          {character.name}
         </h5>
         <p className="card-text">
-          <b>Gender:</b> {movie.gender} <br />
-          <b>Height:</b> {movie.height} <br />
+          <b>Gender:</b> {character.gender} <br />
+          <b>Height:</b> {character.height} <br />
         </p>
         <button onClick={() => remove(index)} className="btn btn-primary">
           <FontAwesomeIcon icon={faTrash} /> Remove

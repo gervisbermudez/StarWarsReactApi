@@ -21,7 +21,7 @@ function Menu(props) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a href="#!" className="navbar-brand">
+      <a href="#!" className="navbar-brand" onClick={toHome}>
         The Star Wars API
       </a>
       <button
